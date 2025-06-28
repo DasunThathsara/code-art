@@ -71,7 +71,32 @@ function drawPerson(x, y, radius, gap, color) {
     } 
 }
 
-teaCup(100, 200, "red", 2);
+function drawPersonsWithHands(x, y, radius, gap, gap_between, handLength, handWidth) {
+    // position :true => right hand side
+    // position :false => left hand side 
+    drawPerson(x, y, radius, gap, true);
+    drawPerson(x + gap_between, y, radius, gap, false);
+
+    const triangle_x = x;
+    const triangle_y = y + (radius + 3 * gap);
+    
+    const rect_right_x = (2 * triangle_x + radius + 2 * gap) / 2;
+    const rect_left_x = (2 * (triangle_x + gap_between) + radius + 2 * gap) / 2;
+    const rect_y = (2 * triangle_y) / 2;
+    
+    ctx.save();
+    ctx.rotate(0.1);
+    ctx.fillRect(rect_right_x, rect_y, handLength, handWidth);
+    ctx.restore();
+
+    ctx.save(); 
+    ctx.rotate(0.1);
+    ctx.rect(rect_left_x, rect_y, handLength, handWidth);
+    ctx.stroke();
+    ctx.restore();
+}    
+
+// teaCup(100, 200, "red", 2);
 
 function drawMainArt() {
     drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
@@ -79,4 +104,5 @@ function drawMainArt() {
     drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
 }
 
-drawMainArt()
+// drawMainArt()
+drawPersonsWithHands(100, 100, 20, 2, 100, 50, 10);
