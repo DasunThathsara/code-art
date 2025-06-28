@@ -240,6 +240,8 @@ function drawMainArt() {
     drawPerson(950, 70 + 150, 20, 5, false);
     door(1000, 110, 100, 160, "brown", "white");
     drawPerson(1150, 70 + 150, 20, 5, true);
+    drawPerson(700, 70 + 450, 20, 5, true);
+    drawPerson(760, 70 + 450, 20, 5, false);
 }
 
 drawMainArt()
