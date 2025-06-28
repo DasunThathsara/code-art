@@ -209,7 +209,7 @@ function drawMainArt() {
     background();
     ellipseGroup();
     drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
-    image1(150, -20);
+    image1(80, -20);
     drawPerson(950, 70 + 150, 20, 5, false);
     door(1000, 110, 100, 160, "brown", "white");
     drawPerson(1150, 70 + 150, 20, 5, true);
