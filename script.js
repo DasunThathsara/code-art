@@ -53,12 +53,17 @@ function tableLeg(startX, startY, colour = "black", scale = 1){
 
 function table (startX, startY, colour = "black", scale = 1) {
     
-    tableTop(startX, startY, colour, scale);
-    tableLeg(startX, startY - 50, colour, scale);
-    tableLeg(startX + 180, startY - 50, colour, scale);
-    tableLeg(startX - 80 * scale, startY, colour, scale);
-    tableLeg(startX + 100 * scale, startY, colour, scale);
+    // tableTop(startX, startY, colour, scale);
+    // tableLeg(startX, startY - 50, colour, scale);
+    // tableLeg(startX + 180, startY - 50, colour, scale);
+    // tableLeg(startX - 80 * scale, startY, colour, scale);
+    // tableLeg(startX + 100 * scale, startY, colour, scale);
+
+    ctx.beginPath();
+    ctx.ellipse(startX + 9 * scale, startY + 2.5 * scale, 3.0 * scale, 10 * scale, Math.PI / 2, 0, Math.PI * 2);
+    ctx.fillStyle = colour;
+    ctx.fill();
 }
 
 
-table(100, 200);
+table(100, 200, "brown", 10);
