@@ -42,13 +42,56 @@ function teaCup(startX, startY, colour, scale = 1) {
     ctx.fill();
 }
 
+function drawText(x, y, text, fontSize = 48, fontFamily = "Carattere", textColor = "black", textBaseline = "alphabetic", fontWeight, ifStroke = false) {
+    if (fontWeight) {
+        ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+    } else {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+    }
+    ctx.textBaseline = textBaseline;
+    ctx.fillStyle = textColor;
+    if (ifStroke) {
+        ctx.strokeText(text, x, y);
+    } else {
+        ctx.fillText(text, x, y);
+    }
+}
 
-teaCup(100, 200, "red", 2);
+function drawSky(color1 = "#001d3d", color2 = "#003566") {
+    let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawStars(count) {
+    for (let i = 0; i < count; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let radius = Math.random() * 1.5;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+    }
+}
+
+function background() {
+    drawSky();
+    drawStars(700);
+}
+
+function ellipseGroup(){
+    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+}
 
 function drawMainArt() {
-    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
+    background();
+    ellipseGroup();
+    drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
 }
 
 drawMainArt()
