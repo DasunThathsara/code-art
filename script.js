@@ -42,6 +42,34 @@ function teaCup(startX, startY, colour, scale = 1) {
     ctx.fill();
 }
 
+function drawPerson(x, y, radius, gap, color) {
+    // color: false => white
+    // color: true => black
+    
+    // Circle (Head)
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+    if (color) {
+        ctx.fill();
+    } 
+
+    const triangle_x = x;
+    const triangle_y = y + (radius + 3 * gap);
+    // Triangle Body
+    ctx.beginPath();
+    ctx.moveTo(triangle_x, triangle_y);
+    ctx.lineTo(triangle_x + radius + 2 * gap, triangle_y);
+    ctx.lineTo(triangle_x, triangle_y + (3 * radius + gap));
+    ctx.lineTo(triangle_x - (radius + 2 * gap), triangle_y);
+    ctx.lineTo(triangle_x, triangle_y);
+    ctx.closePath();
+    ctx.stroke();
+    if (color) {
+        ctx.fill();
+    } 
+}
 
 teaCup(100, 200, "red", 2);
 
