@@ -77,8 +77,8 @@ function drawPerson(x, y, radius, gap, color) {
     ctx.lineTo(triangle_x, triangle_y);
     ctx.closePath();
     ctx.stroke();
-    
-    
+
+
     if (color) {
         ctx.fillStyle = "white";
         ctx.fill();
@@ -91,16 +91,18 @@ function drawPerson(x, y, radius, gap, color) {
 
 
 function image1(startX = 0, startY = 0) {
-    drawPerson(startX + 240, startY + 120, 20, 5, true);
-    drawPerson(startX + 360, startY + 150, 20, 5, false);
-
-    drawPerson(startX + 120, startY + 150, 20, 5, false); // person 6
+    drawPerson(startX + 200, startY + 120, 20, 5, true); // person 11
+    drawPerson(startX + 320, startY + 130, 20, 5, false); // person 12    
+    drawPerson(startX + 440, startY + 130, 20, 5, true); // person 13
+    drawPerson(startX + 550, startY + 160, 20, 5, false); // person 14
+    drawPerson(startX + 100, startY + 150, 20, 5, false); // person 10
 
     table(startX + 100, startY + 200, "brown", 25);
 
-    teaCup(startX + 120, startY + 215, "yellow", 1); // cup 6
-    teaCup(startX + 220, startY + 210, "yellow", 1); // cup 7
-    teaCup(startX + 320, startY + 215, "yellow", 1); // cup 8
+    teaCup(startX + 110, startY + 235, "yellow", 1); // cup 10
+    teaCup(startX + 420, startY + 225, "yellow", 1); // cup 13
+    teaCup(startX + 190, startY + 210, "yellow", 1); // cup 11
+    teaCup(startX + 320, startY + 215, "yellow", 1); // cup 12
 
     teaCup(startX + 100, startY + 270, "yellow", 1); // cup 1
     drawPerson(startX + 100, startY + 240, 20, 5, true); // person 1
@@ -111,17 +113,64 @@ function image1(startX = 0, startY = 0) {
     teaCup(startX + 300, startY + 300, "yellow", 1); // cup 3
     drawPerson(startX + 320, startY + 300, 20, 5, true); // person 3
 
-    teaCup(startX + 350, startY + 300, "yellow", 1); // cup 4
-    drawPerson(startX + 320, startY + 300, 20, 5, true); // person 4
+    teaCup(startX + 410, startY + 280, "yellow", 1); // cup 4
+    drawPerson(startX + 440, startY + 280, 20, 5, false); // person 4
+
+    teaCup(startX + 500, startY + 280, "yellow", 1); // cup 5
+    drawPerson(startX + 550, startY + 250, 20, 5, true); // person 5
 }
 
+function drawText(x, y, text, fontSize = 48, fontFamily = "Carattere", textColor = "black", textBaseline = "alphabetic", fontWeight, ifStroke = false) {
+    if (fontWeight) {
+        ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+    } else {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+    }
+    ctx.textBaseline = textBaseline;
+    ctx.fillStyle = textColor;
+    if (ifStroke) {
+        ctx.strokeText(text, x, y);
+    } else {
+        ctx.fillText(text, x, y);
+    }
+}
+
+function drawSky(color1 = "#001d3d", color2 = "#003566") {
+    let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawStars(count) {
+    for (let i = 0; i < count; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let radius = Math.random() * 1.5;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+    }
+}
+
+function background() {
+    drawSky();
+    drawStars(700);
+}
+
+function ellipseGroup(){
+    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+}
 
 function drawMainArt() {
-    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-
-    image1(50, 0);
+    background();
+    ellipseGroup();
+    drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
+    image1(120, -30);
 }
 
 drawMainArt()
