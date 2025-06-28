@@ -187,17 +187,59 @@ function background() {
     drawStars(700);
 }
 
-function ellipseGroup(){
+function ellipseGroup() {
     drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
     drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
     drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
 }
+
+function door(x, y, width, height, doorColor, boardColor, textColor) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.fillStyle = doorColor;
+    ctx.fill();
+    ctx.fillRect(x, y, width, height);
+    ctx.stroke();
+
+    doorBoard(x + width / 8, y + height / 4, width - width / 4, height / 3, boardColor);
+}
+
+function doorBoard(x, y, width, height, boardColor, textColor) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.fillStyle = boardColor;
+    ctx.fill();
+    ctx.fillRect(x, y, width, height);
+    ctx.stroke();
+
+    doorBoardText(x, y, width, height, "black");
+}
+
+function doorBoardText(x, y, width, height, color) {
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    ctx.font = "BOLD 12px Arial";
+
+    ctx.fillText("Colored", x + width / 6, y + height / 2.5);
+    ctx.moveTo(x + width / 6, y + height / 5);
+    ctx.lineTo(x + width / 1.2, y + height / 2.5);
+    ctx.moveTo(x + width / 6, y + height / 2.5);
+    ctx.lineTo(x + width / 1.2, y + height / 5);
+    ctx.stroke();
+    ctx.fillText("Washroom", x + width / 8, y + height / 1.5);
+}
+
+
 
 function drawMainArt() {
     background();
     ellipseGroup();
     drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
     image1(50, 0);
+    drawPerson(950, 70 + 150, 20, 5, false);
+    door(1000, 110, 100, 160, "brown", "white");
+    drawPerson(1150, 70 + 150, 20, 5, true);
 }
 
 drawMainArt()
