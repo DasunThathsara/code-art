@@ -40,44 +40,7 @@ function teaCup(startX, startY, colour, scale = 1) {
     ctx.fill();
 }
 
-function tableTop(startX, startY, colour = "black", scale = 1) {
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-
-    ctx.lineTo(startX + 180 * scale, startY);
-    ctx.lineTo(startX + 100 * scale, startY + 50 * scale);
-    ctx.lineTo(startX - 80 * scale, startY + 50 * scale);
-    ctx.lineTo(startX, startY);
-    ctx.closePath();
-
-    ctx.fillStyle = colour;
-    ctx.fill();
-}
-
-function tableLeg(startX, startY, colour = "black", scale = 1) {
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-
-    ctx.lineTo(startX * scale, startY + 150 * scale);
-    ctx.lineTo(startX + 5 * scale, startY + 150 * scale);
-    ctx.lineTo(startX + 5 * scale, startY + 50 * scale);
-    ctx.lineTo(startX * scale, startY + 50 * scale);
-
-    ctx.closePath();
-
-    ctx.fillStyle = colour;
-    ctx.fill();
-}
-
 function table(startX, startY, colour = "black", scale = 1) {
-
-    // tableTop(startX, startY, colour, scale);
-    // tableLeg(startX, startY - 50, colour, scale);
-    // tableLeg(startX + 180, startY - 50, colour, scale);
-    // tableLeg(startX - 80 * scale, startY, colour, scale);
-    // tableLeg(startX + 100 * scale, startY, colour, scale);
-
-
     ctx.beginPath();
     ctx.ellipse(startX + 9 * scale, startY + 2.5 * scale, 3.0 * scale, 10 * scale, Math.PI / 2, 0, Math.PI * 2);
     ctx.fillStyle = colour;
@@ -85,8 +48,8 @@ function table(startX, startY, colour = "black", scale = 1) {
 }
 
 function drawPerson(x, y, radius, gap, color) {
-    // color: false => white
-    // color: true => black
+    // color: false => black
+    // color: true => white
 
     // Circle (Head)
     ctx.beginPath();
@@ -128,23 +91,33 @@ function drawPerson(x, y, radius, gap, color) {
 
 
 function image1(startX = 0, startY = 0) {
-    drawPerson(startX + 240, startY + 120, 20, 5, true);
-    drawPerson(startX + 360, startY + 150, 20, 5, false);
+    drawPerson(startX + 200, startY + 120, 20, 5, true); // person 11
+    drawPerson(startX + 320, startY + 130, 20, 5, false); // person 12    
+    drawPerson(startX + 440, startY + 130, 20, 5, true); // person 13
+    drawPerson(startX + 550, startY + 160, 20, 5, false); // person 14
+    drawPerson(startX + 100, startY + 150, 20, 5, false); // person 10
 
-    drawPerson(startX + 120, startY + 150, 20, 5, false);
+    table(startX + 100, startY + 200, "brown", 25);
 
-    table(startX + 100, startY + 200, "brown", 15, 2);
+    teaCup(startX + 110, startY + 235, "yellow", 1); // cup 10
+    teaCup(startX + 420, startY + 225, "yellow", 1); // cup 13
+    teaCup(startX + 190, startY + 210, "yellow", 1); // cup 11
+    teaCup(startX + 320, startY + 215, "yellow", 1); // cup 12
 
-    teaCup(startX + 120, startY + 240, "yellow", 1);
+    teaCup(startX + 100, startY + 270, "yellow", 1); // cup 1
+    drawPerson(startX + 100, startY + 240, 20, 5, true); // person 1
+    
+    teaCup(startX + 200, startY + 300, "yellow", 1); // cup 2
+    drawPerson(startX + 200, startY + 280, 20, 5, false); // person 2
 
-    teaCup(startX + 100, startY + 240, "yellow", 1);
-    drawPerson(startX + 100, startY + 200, 20, 5, true);
+    teaCup(startX + 300, startY + 300, "yellow", 1); // cup 3
+    drawPerson(startX + 320, startY + 300, 20, 5, true); // person 3
 
-    teaCup(startX + 200, startY + 260, "yellow", 1);
-    drawPerson(startX + 220, startY + 270, 20, 5, false);
+    teaCup(startX + 410, startY + 280, "yellow", 1); // cup 4
+    drawPerson(startX + 440, startY + 280, 20, 5, false); // person 4
 
-    teaCup(startX + 300, startY + 260, "yellow", 1);
-    drawPerson(startX + 340, startY + 220, 20, 5, true);
+    teaCup(startX + 500, startY + 280, "yellow", 1); // cup 5
+    drawPerson(startX + 550, startY + 250, 20, 5, true); // person 5
 }
 
 function drawText(x, y, text, fontSize = 48, fontFamily = "Carattere", textColor = "black", textBaseline = "alphabetic", fontWeight, ifStroke = false) {
@@ -236,7 +209,7 @@ function drawMainArt() {
     background();
     ellipseGroup();
     drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
-    image1(50, 0);
+    image1(150, -20);
     drawPerson(950, 70 + 150, 20, 5, false);
     door(1000, 110, 100, 160, "brown", "white");
     drawPerson(1150, 70 + 150, 20, 5, true);
