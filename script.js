@@ -96,20 +96,23 @@ function image1(startX = 0, startY = 0) {
 
     drawPerson(startX + 120, startY + 150, 20, 5, false); // person 6
 
-    table(startX + 100, startY + 200, "brown", 15, 2);
+    table(startX + 100, startY + 200, "brown", 25);
 
     teaCup(startX + 120, startY + 215, "yellow", 1); // cup 6
     teaCup(startX + 220, startY + 210, "yellow", 1); // cup 7
     teaCup(startX + 320, startY + 215, "yellow", 1); // cup 8
 
-    teaCup(startX + 100, startY + 245, "yellow", 1); // cup 1
-    drawPerson(startX + 100, startY + 200, 20, 5, true); // person 1
+    teaCup(startX + 100, startY + 270, "yellow", 1); // cup 1
+    drawPerson(startX + 100, startY + 240, 20, 5, true); // person 1
     
-    teaCup(startX + 200, startY + 260, "yellow", 1); // cup 2
-    drawPerson(startX + 220, startY + 270, 20, 5, false); // person 2
+    teaCup(startX + 200, startY + 300, "yellow", 1); // cup 2
+    drawPerson(startX + 200, startY + 280, 20, 5, false); // person 2
 
-    teaCup(startX + 300, startY + 260, "yellow", 1); // cup 3
-    drawPerson(startX + 340, startY + 220, 20, 5, true); // person 3
+    teaCup(startX + 300, startY + 300, "yellow", 1); // cup 3
+    drawPerson(startX + 320, startY + 300, 20, 5, true); // person 3
+
+    teaCup(startX + 350, startY + 300, "yellow", 1); // cup 4
+    drawPerson(startX + 320, startY + 300, 20, 5, true); // person 4
 }
 
 
