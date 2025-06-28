@@ -64,6 +64,7 @@ function tableLeg(startX, startY, colour = "black", scale = 1) {
     ctx.lineTo(startX * scale, startY + 50 * scale);
 
     ctx.closePath();
+
     ctx.fillStyle = colour;
     ctx.fill();
 }
@@ -113,8 +114,8 @@ function drawPerson(x, y, radius, gap, color) {
     ctx.lineTo(triangle_x, triangle_y);
     ctx.closePath();
     ctx.stroke();
-    
-    
+
+
     if (color) {
         ctx.fillStyle = "white";
         ctx.fill();
@@ -138,7 +139,7 @@ function image1(startX = 0, startY = 0) {
 
     teaCup(startX + 100, startY + 240, "yellow", 1);
     drawPerson(startX + 100, startY + 200, 20, 5, true);
-    
+
     teaCup(startX + 200, startY + 260, "yellow", 1);
     drawPerson(startX + 220, startY + 270, 20, 5, false);
 
@@ -146,12 +147,56 @@ function image1(startX = 0, startY = 0) {
     drawPerson(startX + 340, startY + 220, 20, 5, true);
 }
 
+function drawText(x, y, text, fontSize = 48, fontFamily = "Carattere", textColor = "black", textBaseline = "alphabetic", fontWeight, ifStroke = false) {
+    if (fontWeight) {
+        ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+    } else {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+    }
+    ctx.textBaseline = textBaseline;
+    ctx.fillStyle = textColor;
+    if (ifStroke) {
+        ctx.strokeText(text, x, y);
+    } else {
+        ctx.fillText(text, x, y);
+    }
+}
+
+function drawSky(color1 = "#001d3d", color2 = "#003566") {
+    let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawStars(count) {
+    for (let i = 0; i < count; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let radius = Math.random() * 1.5;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+    }
+}
+
+function background() {
+    drawSky();
+    drawStars(700);
+}
+
+function ellipseGroup(){
+    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgb(215, 215, 215)");
+}
 
 function drawMainArt() {
-    drawMainEllipseWithoutShadow(450, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(1050, 230, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-    drawMainEllipseWithoutShadow(750, 500, 180, 400, Math.PI / 2, "rgba(120, 120, 120, 1)");
-
+    background();
+    ellipseGroup();
+    drawText(200, 430, "Fairness doesn't have color", 140, "Carattere", "brown", "alphabetic", "bold", true);
     image1(50, 0);
 }
 
